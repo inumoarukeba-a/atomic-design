@@ -1,9 +1,5 @@
-import React from "react";
+import React from 'react';
 
-/**
- * Img
- * @param {*} props
- */
-const Img = (props) => <img {...props} />;
+const Img = props => <img { ...props } />;
 
 export default Img;

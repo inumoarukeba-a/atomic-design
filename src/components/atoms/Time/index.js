@@ -1,33 +1,25 @@
-import React from "react";
-import moment from "moment";
-import "moment/locale/ja";
+import React from 'react';
+import moment from 'moment';
+import 'moment/locale/ja';
 
-/**
- * TimePresenter
- * @param {*} props
- */
-export const TimePresenter = (props) => <time {...props} />;
+export const TimePresenter = props => <time { ...props } />;
 
-/**
- * TimeContainer
- * @param {*} param0
- */
 export const TimeContainer = ({
   presenter,
-  children: value,
+  children:value,
   dateTime,
-  format = "MM月DD日（ddd）HH:mm",
-  ...props
+  format = 'MM月DD日(ddd)HH:mm',
+  ...props,
 }) => {
   value = parseInt(value, 10);
 
   var children;
-  if (isValid(!value)) {
-    children = "有効な時間表現ではありません";
+  if (!isValid(value)) {
+    children = '有効な時間表現ではありません';
   } else {
     children = formatDatetime(value, format);
   }
-
+  
   if (!dateTime) {
     dateTime = formatDatetime(value);
   }
@@ -35,33 +27,20 @@ export const TimeContainer = ({
   return presenter({ children, dateTime, ...props });
 };
 
-/**
- * Time
- * @param {*} props
- */
-const Time = (props) => (
+const Time = props => (
   <TimeContainer
-    presenter={(presenterProps) => <TimePresenter {...presenterProps} />}
-    {...props}
+    presenter={ presenterProps => <TimePresenter { ...presenterProps } /> }
+    { ...props }
   />
 );
 export default Time;
 
 moment.locale();
 
-/**
- * isValid
- * @param {*} unixtime
- */
 function isValid(unixtime) {
-  return moment(unixtime, "x, true").isValid();
+  return moment(unixtime, 'x', true).isValid();
 }
 
-/**
- * formatDatetime
- * @param {*} dateTime
- * @param {*} format
- */
-function formatDatetime(dateTime, format = "YYYY-MM-DDTHH:mm") {
-  return moment(dateTime).format(format);
+function formatDatetime(datetime, format = 'YYYY-MM-DDTHH:mm') {
+  return moment(datetime).format(format);
 }
