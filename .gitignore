@@ -1,0 +1,20 @@
+\!*
+.*
+
+# front
+*.scssc
+*.css.map
+/www/generator/log
+
+package.json
+package-lock.json
+yarn.lock
+node_modules/*
+/node_modules
+gulpfile.babel.js
+
+!.gitkeep
+!.gitignore
+!.gitmodules
+!.htaccess
+!.htpasswd
